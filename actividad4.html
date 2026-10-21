@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- Construir un CUESTIONARIO (5 interrogantes) -->
+<!-- Por cada Pregunta -->
+<!-- 3 alternativas -->
+<!-- Utilizar botones de desplazamiento para la navegación -->
+<!-- Los datos que se irán mostrando deben estar en un OBJETO -->
+
+<style>
+/* ===== CSS SENCILLO PARA EL CUESTIONARIO ===== */
+/* Uso: <link rel="stylesheet" href="cuestionario.css"> dentro del <head> */
+ 
+* { box-sizing: border-box; }
+ 
+html {
+  min-height: 100%;
+  background: linear-gradient(180deg, #f5f6f8 0%, #e9ecf1 100%);
+}
+ 
+/* El body funciona como la tarjeta */
+body {
+  max-width: 480px;
+  margin: 48px auto;
+  padding: 30px;
+  background: #fff;
+  border: 1px solid #eceef2;
+  border-radius: 16px;
+  font-family: system-ui, Arial, sans-serif;
+  color: #222;
+  box-shadow:
+    0 1px 2px rgba(16, 24, 40, .06),
+    0 8px 16px rgba(16, 24, 40, .06),
+    0 24px 48px rgba(16, 24, 40, .10);
+}
+ 
+/* Pregunta */
+h3 {
+  margin: 0 0 22px;
+  padding-bottom: 14px;
+  font-size: 1.15rem;
+  line-height: 1.4;
+  border-bottom: 1px solid #eef0f3;
+}
+ 
+br { display: none; }
+ 
+/* Alternativas */
+#opcionA, #opcionB, #opcionC {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 13px 16px;
+  background: #fbfbfc;
+  color: #222;
+  border: 1px solid #dfe2e7;
+  border-radius: 10px;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, .06);
+  transition: transform .15s, box-shadow .2s, border-color .2s, background .2s;
+}
+#opcionA:hover, #opcionB:hover, #opcionC:hover {
+  background: #fff;
+  border-color: #222;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(16, 24, 40, .12);
+}
+#opcionA:active, #opcionB:active, #opcionC:active {
+  transform: translateY(1px);
+}
+ 
+/* Navegación */
+#anterior, #siguiente {
+  width: calc(50% - 6px);
+  margin-top: 16px;
+  padding: 12px;
+  border-radius: 10px;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform .15s, box-shadow .2s, background .2s;
+}
+#anterior {
+  background: #fff;
+  color: #222;
+  border: 1px solid #dfe2e7;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, .08);
+}
+#anterior:hover {
+  background: #f4f5f7;
+  box-shadow: 0 3px 8px rgba(16, 24, 40, .12);
+}
+#siguiente {
+  background: #222;
+  color: #fff;
+  border: 1px solid #222;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .2), 0 8px 16px rgba(0, 0, 0, .15);
+}
+#siguiente:hover {
+  background: #000;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, .25), 0 14px 24px rgba(0, 0, 0, .2);
+}
+ 
+button:focus-visible {
+  outline: 3px solid rgba(34, 34, 34, .25);
+  outline-offset: 2px;
+}
+ 
+</style>
+
+
+
+<h3 id="pregunta"></h3>
+ 
+  <button type="button" id="opcionA"></button>
+  <button type="button" id="opcionB"></button>
+  <button type="button" id="opcionC"></button>
+ 
+  <br><br>
+ 
+  <button type="button" id="anterior">Anterior</button>
+  <button type="button" id="siguiente">Siguiente</button>
+ 
+  <script>
+  
+    const cuestionario = {
+      preguntas: [
+        "1. ¿Qué significa HTML?",
+        "2. ¿Qué lenguaje da estilos a una página web?",
+        "3. ¿Con qué palabra se declara una constante en JS?",
+        "4. ¿Qué método agrega un elemento al final de un arreglo?",
+        "5. ¿Qué evento ocurre al hacer clic en un botón?"
+      ],
+      a: ["HyperText Markup Language", "CSS", "var", "pop()", "click"],
+      b: ["High Transfer Machine Language", "SQL", "let", "shift()", "focus"],
+      c: ["Home Tool Markup Language", "PHP", "const", "push()", "keyup"]
+    }
+ 
+    document.addEventListener("DOMContentLoaded", function (){
+ 
+      const pregunta = document.getElementById("pregunta")
+      const opcionA = document.getElementById("opcionA")
+      const opcionB = document.getElementById("opcionB")
+      const opcionC = document.getElementById("opcionC")
+      const anterior = document.getElementById("anterior")
+      const siguiente = document.getElementById("siguiente")
+ 
+      let i = 0
+ 
+      function mostrar(){
+        pregunta.innerHTML = cuestionario.preguntas[i]
+        opcionA.innerHTML = cuestionario.a[i]
+        opcionB.innerHTML = cuestionario.b[i]
+        opcionC.innerHTML = cuestionario.c[i]
+      }
+ 
+      opcionA.addEventListener("click", function (){
+        mostrar()
+        opcionA.innerHTML = "✔ " + cuestionario.a[i]
+      })
+ 
+      opcionB.addEventListener("click", function (){
+        mostrar()
+        opcionB.innerHTML = "✔ " + cuestionario.b[i]
+      })
+ 
+      opcionC.addEventListener("click", function (){
+        mostrar()
+        opcionC.innerHTML = "✔ " + cuestionario.c[i]
+      })
+ 
+      anterior.addEventListener("click", function (){
+        if (i > 0) {
+          i = i - 1
+          mostrar()
+        }
+      })
+ 
+      siguiente.addEventListener("click", function (){
+        if (i < 4) {
+          i = i + 1
+          mostrar()
+        }
+      })
+ 
+      mostrar()
+    })
+  </script>
+ 
+
+</body>
+</html>

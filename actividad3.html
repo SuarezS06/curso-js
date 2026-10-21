@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- Formulario realizar cotización -->
+<!-- Compra una PC / portátil -->
+<!-- Existan campos obligatorios / no obligatorios -->
+<!-- Generar un cuadro de diálogo con la confirmación -->
+<!-- Aplicar estilos CSS -->
+
+<style>
+  * { box-sizing: border-box; }
+ 
+body {
+  margin: 0;
+  padding: 40px 16px;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #f5f6f8 0%, #e9ecf1 100%);
+  font-family: system-ui, Arial, sans-serif;
+  color: #222;
+}
+ 
+form {
+  max-width: 440px;
+  margin: 0 auto;
+  padding: 34px 30px 30px;
+  background: #fff;
+  border: 1px solid #eceef2;
+  border-radius: 16px;
+  box-shadow:
+    0 1px 2px rgba(16, 24, 40, .06),
+    0 8px 16px rgba(16, 24, 40, .06),
+    0 24px 48px rgba(16, 24, 40, .10);
+}
+ 
+h1 {
+  margin: 0 0 24px;
+  padding-bottom: 14px;
+  font-size: 1.5rem;
+  text-align: center;
+  border-bottom: 1px solid #eef0f3;
+}
+ 
+form > div { margin-bottom: 16px; }
+ 
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: .85rem;
+  font-weight: 600;
+  color: #333;
+}
+label:has(+ :required)::after {
+  content: " *";
+  color: #e03131;
+}
+label:has(+ :not(:required))::after {
+  content: " (opcional)";
+  font-weight: 400;
+  color: #9aa0a9;
+}
+ 
+input, select {
+  width: 100%;
+  padding: 10px 12px;
+  background: #fbfbfc;
+  border: 1px solid #dfe2e7;
+  border-radius: 10px;
+  font: inherit;
+  color: #222;
+  box-shadow: inset 0 1px 2px rgba(16, 24, 40, .06);
+  transition: border-color .2s, box-shadow .2s, background .2s;
+}
+input:hover, select:hover {
+  border-color: #c3c8d0;
+}
+input:focus, select:focus {
+  outline: none;
+  background: #fff;
+  border-color: #222;
+  box-shadow:
+    inset 0 1px 2px rgba(16, 24, 40, .04),
+    0 0 0 4px rgba(34, 34, 34, .10);
+}
+ 
+/* Botones */
+form > div:last-of-type {
+  display: flex;
+  gap: 12px;
+  margin: 26px 0 0;
+}
+button {
+  flex: 1;
+  padding: 12px;
+  border-radius: 10px;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform .15s, box-shadow .2s, background .2s;
+}
+button:active {
+  transform: translateY(1px);
+}
+button[type="submit"] {
+  background: #222;
+  color: #fff;
+  border: 1px solid #222;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .2), 0 8px 16px rgba(0, 0, 0, .15);
+}
+button[type="submit"]:hover {
+  background: #000;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, .25), 0 14px 24px rgba(0, 0, 0, .2);
+}
+button[type="reset"] {
+  background: #fff;
+  color: #222;
+  border: 1px solid #dfe2e7;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, .08);
+}
+button[type="reset"]:hover {
+  background: #f4f5f7;
+  box-shadow: 0 3px 8px rgba(16, 24, 40, .12);
+}
+ 
+</style>
+
+
+    <form action="" autocomplete="off" id="formulario">
+      <h1>Cotización</h1>
+
+      <div>
+        <label for="apellidos">Apellidos </label>
+        <input type="text" id="apellidos" minlength="3" required />
+      </div>
+
+      <div>
+        <label for="nombres">Nombres </label>
+        <input type="text" id="nombres" minlength="3" required />
+      </div>
+
+      <div>
+        <label for="dire">Dirección </label>
+        <input type="text" id="dire" minlength="3" />
+      </div>
+
+
+
+      <div>
+        <label for="email">Correo electrónico </label>
+        <input type="email" id="email" required />
+      </div>
+
+      <div>
+        <label for="telefono">Teléfono </label>
+        <input type="tel" id="telefono" />
+      </div>
+
+      <div>
+        <label for="tipo">Tipo de equipo</label>
+                  <select name="tipo" id="tipo" required>
+                    <option value="">Seleccione</option>
+                    <option value="1">PC</option>
+                    <option value="2">Portatil</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label for="cantidad">Cantidad</label>
+                  <input type="text" id="cantidad" required>
+                </div>
+
+                <div>
+                  <label for="marca">Marcas</label>
+                  <select name="marca" id="marca" required>
+                    <option value="">Seleccione</option>
+                    <option value="">HP</option>
+                    <option value="">Asus</option>
+                    <option value="">Lenovo</option>
+                    <option value="">Dell</option>
+                    <option value="">Apple</option>
+                    <option value="">Samsung</option>
+                  </select>
+                </div>
+        
+                <div>
+                <label  for="fechaC">Fecha Compra</label>
+                <input type="date" id="fechaC" max="2026-10-20" required
+                />
+              </div>
+
+              <div>
+                <label for="presupuesto">Presupuesto</label>
+                <select name="presupuesto" id="presupuesto">
+                  <option value="">Seleccione</option>
+                  <option value="">S/ 999</option>
+                  <option value="">S/ 1299</option>
+                  <option value="">S/ 1750</option>
+                  <option value="">S/ 3999</option>
+                  <option value="">S/ 6499</option>
+                </select>
+              </div>
+
+
+              <div>
+                <label for="pago">Metodo Pago</label>
+                <select name="pago" id="pago">
+                  <option value="">Seleccione</option>
+                  <option value="">Efectivo</option>
+                  <option value="">BCP</option>
+                  <option value="">BBVA</option>
+                  <option value="">InterBank</option>
+                  <option value="">Scotiabank</option>
+                </select>
+              </div>
+
+                <div>
+                <button  type="submit"> Enviar</button>
+                <button  type="reset">Reiniciar</button>
+              </div>
+
+       </form>
+
+
+       <script>
+     
+      const formulario = document.getElementById("formulario");
+
+      
+      formulario.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        if (confirm("¿Esta seguro de enviar la cotización?")) {
+          alert("Cotización enviada corectamente...");
+        }
+      });
+    </script>
+
+</body>
+</html>
